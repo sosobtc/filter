@@ -1,7 +1,7 @@
 {
   "name": "sc-filter",
   "description": "a word filter based on AC_SC",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "sosobtc",
     "email": "sosobtc@163.com"
