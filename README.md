@@ -3,6 +3,10 @@ sc-filter
 
 基于AC_SC算法的中文过滤程序
 
+## Installation
+
+    $ npm install sc-filter
+
 ## Usage
 
 ```js
@@ -17,10 +21,6 @@ dict.build();
 console.log(dict.match('模式匹配，模式2将被匹配'));
 
 ```
-
-## Installation
-
-    $ npm install sc-filter
 
 
 
