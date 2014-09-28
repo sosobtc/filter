@@ -2,7 +2,26 @@
   "name": "filter",
   "description": "a word filter based on AC_SC",
   "version": "1.0.0",
+  "author": {
+    "name": "sosobtc",
+    "email": "sosobtc@163.com"
+  },
+  "contributors": [{
+      "name": "Fortran Lee",
+      "email": "fortranlee.91@gmail.com"
+  }],
   "dependencies": {
     "utils-merge": "~1.0.0"
-  }
+  },
+  "keywords": [
+    "filter",
+    "javascript",
+    "AC_SC",
+    "中文过滤"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sosobtc/filter"
+  },
+  "license": "MIT"
 }
