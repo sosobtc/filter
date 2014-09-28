@@ -10,7 +10,7 @@ sc-filter
 ## Usage
 
 ```js
-var dict = require('sc-filter').dict;
+var dict = require('sc-filter').dict();
 
 dict.insert('模式1');
 dict.insert('模式2');

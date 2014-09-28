@@ -37,9 +37,15 @@ exports = module.exports = Dict;
  * @returns
  */
 function Dict(name, hash_len){
-  this.name = name || '';
-  this.hash_len = hash_len || 256;
-  this.init();
+  var self = this instanceof Dict
+           ? this
+               : Object.create(Dict.prototype);
+  
+  self.name = name || '';
+  self.hash_len = hash_len || 256;
+  self.init();
+  
+  return self;
 }
 
 /**
