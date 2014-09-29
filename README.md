@@ -30,13 +30,12 @@ console.log(dict.match('模式匹配，模式2将被匹配'));
 
 编辑文件server.js
 ```js
-var dictServer = require('sc-filter').dictServer
-  , server = dictServer();
+var server = require('sc-filter').createServer();
   
 server.set('port', 8928);
 server.set('addr', '127.0.0.1');
 
-dictServer.load('path/to/pattern/files', function loaded(){
+server.loadDict(function loaded(){
   server.listen(server.get('port'), server.get('addr'), function(){
     console.log('dict server is listening on ' + server.get('addr') + ':' + server.get('port'));
   });
@@ -50,17 +49,21 @@ dictServer.load('path/to/pattern/files', function loaded(){
 
 编辑应用文件app.js
 ```js
-var client = require('sc-filter').client
-  , server = dictServer();
-  
-server.set('port', 8928);
-server.set('addr', '127.0.0.1');
+var cli = require('sc-filter').createClient();
 
-dictServer.load('path/to/pattern/files', function loaded(){
-  server.listen(server.get('port'), server.get('addr'), function(){
-    console.log('dict server is listening on ' + server.get('addr') + ':' + server.get('port'));
+cli.set('port', 8928);
+cli.set('addr', '127.0.0.1');
+
+cli.ready(function(){
+  this.match('需要匹配模式的句子', function(m){
+    console.log(m);
   });
 });
 
+cli.connect(cli.get('port'), cli.get('addr'));
+
 ```
 
+运行app.js
+
+    $ node app.js
