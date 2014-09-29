@@ -1,5 +1,9 @@
-exports.dictServer = require('./lib');
+exports.dictServer = function(){
+  return require('./lib');
+};
 
-exports.client = require('./lib/client');
+exports.client = function(){
+  return require('./lib/client');
+};
 
 exports.dict = require('./dict');
