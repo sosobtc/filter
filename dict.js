@@ -165,7 +165,7 @@ Dict.prototype.match = function(str){
     }
     
     if(node && node.o){
-      ret.push([i - node.o.length + 1, node.o + pad('', excapeCounter, ' ')]);
+      ret.push([i - node.o.length - excapeCounter + 1, node.o + pad('', excapeCounter, ' ')]);
       excapeCounter = 0;
       if(node.o.length != 1 && node.c !== pre_node.c){
         // 继续匹配
