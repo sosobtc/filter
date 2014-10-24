@@ -161,13 +161,14 @@ Dict.prototype.match = function(str){
     }
     
     if(!node && cur !== 0){
+      excapeCounter = 0;
       node = this.__goto(cur = 0, char);
     }
     
     if(node && node.o){
       var matchLen = node.o.length + excapeCounter;
       var index = i - matchLen + 1;
-      ret.push([index, str.slice(index, matchLen)]);
+      ret.push([index, str.slice(index, index + matchLen)]);
       excapeCounter = 0;
       if(node.o.length != 1 && node.c !== pre_node.c){
         // 继续匹配
@@ -175,7 +176,7 @@ Dict.prototype.match = function(str){
       }
     }
     pre_node = node;
-    cur = node && (node.n || node.f);
+    cur = node.n || node.f;
   }
   
   dict = cur = i = char = node = pre_node = len = null;
