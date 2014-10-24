@@ -1,15 +1,17 @@
 {
   "name": "sc-filter",
   "description": "a word filter based on AC_SC",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": {
     "name": "sosobtc",
     "email": "sosobtc@163.com"
   },
-  "contributors": [{
+  "contributors": [
+    {
       "name": "Fortran Lee",
       "email": "fortranlee.91@gmail.com"
-  }],
+    }
+  ],
   "dependencies": {
     "utils-merge": "~1.0.0"
   },
@@ -23,5 +25,16 @@
     "type": "git",
     "url": "git://github.com/sosobtc/filter"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "readme": "sc-filter\r\n======\r\n\r\n基于AC_SC算法的中文过滤程序\r\n\r\n## Installation\r\n\r\n    $ npm install sc-filter\r\n\r\n## Usage\r\n\r\n直接调用API，同步返回结果\r\n\r\n每次调用都需要初始化字典并插入模式\r\n\r\n```js\r\nvar dict = require('sc-filter').dict();\r\n\r\ndict.insert('模式1');\r\ndict.insert('模式2');\r\ndict.insert('模式3');\r\n\r\ndict.build();\r\n\r\nconsole.log(dict.match('模式匹配，模式2将被匹配'));\r\n\r\n```\r\n\r\n作为网络服务器运行\r\n\r\n编辑文件server.js\r\n```js\r\nvar server = require('sc-filter').createServer();\r\n  \r\nserver.set('port', 8928);\r\nserver.set('addr', '127.0.0.1');\r\n\r\nserver.loadDict(function loaded(){\r\n  server.listen(server.get('port'), server.get('addr'), function(){\r\n    console.log('dict server is listening on ' + server.get('addr') + ':' + server.get('port'));\r\n  });\r\n});\r\n\r\n```\r\n\r\n开启服务\r\n\r\n    $ node server.js\r\n\r\n编辑应用文件app.js\r\n```js\r\nvar cli = require('sc-filter').createClient();\r\n\r\ncli.set('port', 8928);\r\ncli.set('addr', '127.0.0.1');\r\n\r\ncli.ready(function(){\r\n  this.match('需要匹配模式的句子', function(m){\r\n    console.log(m);\r\n  });\r\n});\r\n\r\ncli.connect(cli.get('port'), cli.get('addr'));\r\n\r\n```\r\n\r\n运行app.js\r\n\r\n    $ node app.js\r\n",
+  "readmeFilename": "README.md",
+  "gitHead": "8ff95c0da78531ccfdf5fd60f06bd7415794a513",
+  "bugs": {
+    "url": "https://github.com/sosobtc/filter/issues"
+  },
+  "homepage": "https://github.com/sosobtc/filter",
+  "_id": "sc-filter@1.0.5",
+  "scripts": {},
+  "_shasum": "f8b347cf2dbbb12e5580120ec1131765b07fc1f5",
+  "_from": "sc-filter@1.0.5"
 }
