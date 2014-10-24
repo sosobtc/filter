@@ -141,9 +141,17 @@ Dict.prototype.match = function(str){
     , len = str.length
     , ret = [];
   
+  var excapeStr = ' ';
+  var excapeCounter = 0;
+  
   
   for(; i < len; i++){
     char = str[i].toLowerCase();
+    
+    if(excapeStr.indexOf(char) > -1){
+      excapeCounter++;
+      continue;
+    }
     
     if(pre_node){
       node = this.__goto(pre_node.n, char) ||
@@ -157,7 +165,8 @@ Dict.prototype.match = function(str){
     }
     
     if(node && node.o){
-      ret.push([i - node.o.length + 1, node.o]);
+      ret.push([i - node.o.length + 1, node.o + pad('', excapeCounter, ' ')]);
+      excapeCounter = 0;
       if(node.o.length != 1 && node.c !== pre_node.c){
         // 继续匹配
         i--;
@@ -265,3 +274,8 @@ Dict.prototype.__goto = function(cur, char){
   return node;
 };
 
+function pad(n, width, z) {
+  z = z || '0';
+  n = n + '';
+  return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
