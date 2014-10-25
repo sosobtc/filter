@@ -141,12 +141,20 @@ Dict.prototype.match = function(str){
     , len = str.length
     , ret = [];
   
+  var charCode;
+  
   var excapeStr = ' ';
   var excapeCounter = 0;
   
   
   for(; i < len; i++){
     char = str[i].toLowerCase();
+    charCode = char.charCodeAt(0);
+    
+    if(charCode > 65248 && charCode < 65375){
+      // 增加对全角字符的匹配
+      char = String.fromCharCode(charCode - 65248);
+    }
     
     if(excapeStr.indexOf(char) > -1){
       excapeCounter++;
