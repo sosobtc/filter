@@ -154,6 +154,9 @@ Dict.prototype.match = function(str){
     if(charCode > 65248 && charCode < 65375){
       // 增加对全角字符的匹配
       char = String.fromCharCode(charCode - 65248);
+    }else if(charCode === 12288){
+      // 空格的全角编码为12288
+      char = ' ';
     }
     
     if(excapeStr.indexOf(char) > -1){
